@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+
 use App\Models\Task;
 
 if(!empty($_POST)){

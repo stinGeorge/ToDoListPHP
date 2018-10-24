@@ -1,6 +1,10 @@
 <?php
+// Show errors
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 $capsule = new Capsule;
@@ -19,3 +23,10 @@ $capsule->addConnection([
 $capsule->setAsGlobal();
 // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
 $capsule->bootEloquent();
+
+$route = $_GET['route'] ?? '/';
+if($route == '/'){
+    require_once '../index.php';
+}elseif($route == 'addTask'){
+//    require_once '../addTask.php';
+}
