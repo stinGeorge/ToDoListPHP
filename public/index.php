@@ -24,9 +24,18 @@ $capsule->setAsGlobal();
 // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
 $capsule->bootEloquent();
 
-$route = $_GET['route'] ?? '/';
-if($route == '/'){
-    require_once '../index.php';
-}elseif($route == 'addTask'){
-    require_once '../addTask.php';
-}
+$request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
+    $_SERVER,
+    $_GET,
+    $_POST,
+    $_COOKIE,
+    $_FILES
+);
+var_dump($request->getUri()->getPath());
+
+//$route = $_GET['route'] ?? '/';
+//if($route == '/'){
+//    require_once '../index.php';
+//}elseif($route == 'addTask'){
+//    require_once '../addTask.php';
+//}
