@@ -1,32 +1,14 @@
 <?php
-
-require_once 'vendor/autoload.php';
-
-use Illuminate\Database\Capsule\Manager as Capsule;
+require_once 'config.php';
 use App\Models\Task;
-
-$capsule = new Capsule;
-$capsule->addConnection([
-    'driver'    => 'mysql',
-    'host'      => 'localhost',
-    'database'  => 'todolist',
-    'username'  => 'root',
-    'password'  => 'root',
-    'charset'   => 'utf8',
-    'collation' => 'utf8_unicode_ci',
-    'prefix'    => '',
-]);
-
-// Make this Capsule instance available globally via static methods... (optional)
-$capsule->setAsGlobal();
-// Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
-$capsule->bootEloquent();
 
 if(!empty($_POST)){
     $task = new Task();
     $task->name = $_POST['name'];
     $task->save();
 }
+
+$tasks = Task::all();
 ?>
 <!doctype html>
 <html lang="ES_es">
@@ -39,13 +21,19 @@ if(!empty($_POST)){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Uso de ORM</h1>
+<h1>Uso de ORM Eloquent</h1>
+<h2>Lista de tareas</h2>
+<ul>
+    <?php foreach ($tasks as $task): ?>
+    <li><?php echo $task->name ?></li>
+    <?php endforeach; ?>
+</ul>
 <h2>Agregar una tarea</h2>
 <form method="post">
     <label>
         <input type="text" name="name">
     </label>
-    <button type="submit">Guardar</button>
+    <button type="submit">Agregar</button>
 </form>
 </body>
 </html>
