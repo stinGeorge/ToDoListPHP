@@ -28,5 +28,5 @@ $route = $_GET['route'] ?? '/';
 if($route == '/'){
     require_once '../index.php';
 }elseif($route == 'addTask'){
-//    require_once '../addTask.php';
+    require_once '../addTask.php';
 }
