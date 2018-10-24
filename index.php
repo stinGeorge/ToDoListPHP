@@ -1,7 +1,32 @@
 <?php
-$post = $_POST;
 
-var_dump($post);
+require_once 'vendor/autoload.php';
+
+use Illuminate\Database\Capsule\Manager as Capsule;
+use App\Models\Task;
+
+$capsule = new Capsule;
+$capsule->addConnection([
+    'driver'    => 'mysql',
+    'host'      => 'localhost',
+    'database'  => 'todolist',
+    'username'  => 'root',
+    'password'  => 'root',
+    'charset'   => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix'    => '',
+]);
+
+// Make this Capsule instance available globally via static methods... (optional)
+$capsule->setAsGlobal();
+// Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
+$capsule->bootEloquent();
+
+if(!empty($_POST)){
+    $task = new Task();
+    $task->name = $_POST['name'];
+    $task->save();
+}
 ?>
 <!doctype html>
 <html lang="ES_es">
@@ -17,7 +42,9 @@ var_dump($post);
 <h1>Uso de ORM</h1>
 <h2>Agregar una tarea</h2>
 <form method="post">
-    <input type="text" name="name">
+    <label>
+        <input type="text" name="name">
+    </label>
     <button type="submit">Guardar</button>
 </form>
 </body>
