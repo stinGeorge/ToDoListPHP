@@ -5,7 +5,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once '../vendor/autoload.php';
+
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Aura\Router\RouterContainer;
 
 $capsule = new Capsule;
 $capsule->addConnection([
@@ -31,11 +33,15 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_COOKIE,
     $_FILES
 );
-var_dump($request->getUri()->getPath());
 
-//$route = $_GET['route'] ?? '/';
-//if($route == '/'){
-//    require_once '../index.php';
-//}elseif($route == 'addTask'){
-//    require_once '../addTask.php';
-//}
+$routerContainer = new RouterContainer();
+$map = $routerContainer->getMap();
+$map->get('index', '/projects/php/', '../index.php');
+$map->get('addTask', '/projects/php/tasks/add', '../addTask.php');
+$matcher = $routerContainer->getMatcher();
+$route = $matcher->match($request);
+if(!$route){
+    echo 'No route <br />';
+}else{
+    require_once $route->handler;
+}
