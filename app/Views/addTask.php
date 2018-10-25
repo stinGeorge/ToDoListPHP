@@ -11,11 +11,12 @@
 <body>
 <h1>Uso de ORM Eloquent</h1>
 <h2>Agregar una tarea</h2>
-<form method="post">
+<form method="post" action="/projects/php/tasks/add">
     <label>
         <input type="text" name="name">
     </label>
     <button type="submit">Agregar</button>
 </form>
+<a href="/projects/php/">Ver lista de tareas</a>
 </body>
 </html>

@@ -44,6 +44,10 @@ $map->get('addTask', '/projects/php/tasks/add',  array(
     'controller' => 'App\Controllers\TaskController',
     'action' => 'addAction'
 ));
+$map->post('saveTask', '/projects/php/tasks/add',  array(
+    'controller' => 'App\Controllers\TaskController',
+    'action' => 'addAction'
+));
 
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);
@@ -54,5 +58,5 @@ if(!$route){
     $controllerName = $handlerData['controller'];
     $controllerAction = $handlerData['action'];
     $controller = new $handlerData['controller'];
-    $controller->$controllerAction();
+    $controller->$controllerAction($request);
 }

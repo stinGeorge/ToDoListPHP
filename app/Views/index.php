@@ -16,5 +16,6 @@
     <li><?php echo $task->name ?></li>
     <?php endforeach; ?>
 </ul>
+<a href="/projects/php/tasks/add">Agregar nueva tarea</a>
 </body>
 </html>
