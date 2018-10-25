@@ -14,15 +14,18 @@ class TaskController extends BaseController{
 
             try{
                 $jobValidator->assert($postData);
+                $task = new Task();
+                $task->name = $postData['name'];
+
                 $files = $request->getUploadedFiles();
                 $image = $files['image'];
                 if($image->getError() == UPLOAD_ERR_OK){
                     $fileName = $image->getClientFileName();
                     $image->moveTo("uploads/$fileName");
+                    $task->image_name = $fileName;
                 }
-//                $task = new Task();
-//                $task->name = $postData['name'];
-//                $task->save();
+
+                $task->save();
                 $responseMessage = 'Saved!!!';
                 $statusMessage = 1;
             }catch (\Exception $e){

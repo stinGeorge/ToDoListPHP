@@ -15,6 +15,7 @@ En este proyecto se desarrolla un pequeño manejador de tareas TODO-LIST.
 - Uso de **rutas** compatible con PSR-7.
 - Uso de **validaciones**.
 - Uso de **Twig** como motor de plantillas.
+- Simple manera de adjuntar y almacenar archivos.
 
 ## Herramientas y entorno
 - Sistema Windows 10

@@ -4,7 +4,14 @@
     <h1>Lista de tareas</h1>
     <ul>
         {% for task in tasks %}
-            <li>{{ task.name }}</li>
+            <li>
+                {{ task.name }}
+                {% if task.image_name %}
+                    <p>
+                        <img src="uploads/{{ task.image_name }}" alt="{{ task.image_name }}" width="100">
+                    </p>
+                {% endif %}
+            </li>
         {% endfor %}
     </ul>
     <a href="/projects/php/tasks/add">Agregar nueva tarea</a>
