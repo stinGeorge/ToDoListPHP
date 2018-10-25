@@ -3,7 +3,7 @@
 namespace App\Controllers;
 use App\Models\Task;
 
-class TaskController{
+class TaskController extends BaseController{
     public function addAction($request){
         if($request->getMethod() === 'POST'){
             $postData = $request->getParsedBody();
@@ -11,6 +11,7 @@ class TaskController{
             $task->name = $postData['name'];
             $task->save();
         }
-        include '../app/Views/addTask.php';
+
+        echo $this->renderHTML('addTask.twig');
     }
 }
