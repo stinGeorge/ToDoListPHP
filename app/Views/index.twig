@@ -12,9 +12,9 @@
 <h1>Uso de ORM Eloquent</h1>
 <h2>Lista de tareas</h2>
 <ul>
-    <?php foreach ($tasks as $task): ?>
-    <li><?php echo $task->name ?></li>
-    <?php endforeach; ?>
+    {% for task in tasks %}
+    <li>{{ task.name }}</li>
+    {% endfor %}
 </ul>
 <a href="/projects/php/tasks/add">Agregar nueva tarea</a>
 </body>

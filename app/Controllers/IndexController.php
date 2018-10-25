@@ -3,9 +3,10 @@
 namespace App\Controllers;
 use App\Models\Task;
 
-class IndexController{
+class IndexController extends BaseController {
     public function indexAction(){
         $tasks = Task::all();
-        include_once '../app/Views/index.php';
+        $data = array('tasks' => $tasks);
+        return $this->renderHTML('index.twig', $data);
     }
 }

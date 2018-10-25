@@ -12,6 +12,6 @@ class TaskController extends BaseController{
             $task->save();
         }
 
-        echo $this->renderHTML('addTask.twig');
+        return $this->renderHTML('addTask.twig');
     }
 }
