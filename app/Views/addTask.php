@@ -1,13 +1,3 @@
-<?php
-
-use App\Models\Task;
-
-if(!empty($_POST)){
-    $task = new Task();
-    $task->name = $_POST['name'];
-    $task->save();
-}
-?>
 <!doctype html>
 <html lang="ES_es">
 <head>
