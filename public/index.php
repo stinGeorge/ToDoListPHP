@@ -36,6 +36,8 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
 
 $routerContainer = new RouterContainer();
 $map = $routerContainer->getMap();
+
+// Routes for tasks
 $map->get('index', '/projects/php/', array(
     'controller' => 'App\Controllers\IndexController',
     'action' => 'indexAction'
@@ -46,6 +48,20 @@ $map->get('addTask', '/projects/php/tasks/add',  array(
 ));
 $map->post('saveTask', '/projects/php/tasks/add',  array(
     'controller' => 'App\Controllers\TaskController',
+    'action' => 'addAction'
+));
+
+// Routes for users
+$map->get('indexUser', '/projects/php/users/', array(
+    'controller' => 'App\Controllers\UserController',
+    'action' => 'indexAction'
+));
+$map->get('addUser', '/projects/php/users/add',  array(
+    'controller' => 'App\Controllers\UserController',
+    'action' => 'addAction'
+));
+$map->post('saveUser', '/projects/php/users/add',  array(
+    'controller' => 'App\Controllers\UserController',
     'action' => 'addAction'
 ));
 

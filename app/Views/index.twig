@@ -1,7 +1,15 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Lista de tareas</h1>
+    <h1>APP TODO</h1>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="/projects/php/users/">Lista de usuarios</a>
+        </li>
+        <li class="list-group-item">
+            <a href="/projects/php/tasks/add">Lista de tareas</a>
+        </li>
+    </ul>
     <ul>
         {% for task in tasks %}
             <li>
@@ -14,5 +22,4 @@
             </li>
         {% endfor %}
     </ul>
-    <a href="/projects/php/tasks/add">Agregar nueva tarea</a>
 {% endblock %}
