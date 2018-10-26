@@ -34,45 +34,49 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_FILES
 );
 
-$routerContainer = new RouterContainer();
+$routerContainer = new RouterContainer('/projects/php');
 $map = $routerContainer->getMap();
 
 // Index principal - Front Controller
-$map->get('index', '/projects/php/', array(
+$map->get('index', '/', array(
     'controller' => 'App\Controllers\IndexController',
     'action' => 'indexAction'
 ));
 
 // Routes for Login
-$map->get('indexLogin', '/projects/php/login-form', array(
+$map->get('indexLogin', '/login-form/', array(
     'controller' => 'App\Controllers\AuthController',
     'action' => 'indexAction'
 ));
+$map->post('auth', '/auth/', array(
+    'controller' => 'App\Controllers\AuthController',
+    'action' => 'authLogin'
+));
 
 // Routes for tasks
-$map->get('indexTask', '/projects/php/tasks/', array(
+$map->get('indexTask', '/tasks/', array(
     'controller' => 'App\Controllers\TaskController',
     'action' => 'indexAction'
 ));
-$map->get('addTask', '/projects/php/tasks/add',  array(
+$map->get('addTask', '/tasks/add/',  array(
     'controller' => 'App\Controllers\TaskController',
     'action' => 'addAction'
 ));
-$map->post('saveTask', '/projects/php/tasks/add',  array(
+$map->post('saveTask', '/tasks/add/',  array(
     'controller' => 'App\Controllers\TaskController',
     'action' => 'addAction'
 ));
 
 // Routes for users
-$map->get('indexUser', '/projects/php/users/', array(
+$map->get('indexUser', '/users/', array(
     'controller' => 'App\Controllers\UserController',
     'action' => 'indexAction'
 ));
-$map->get('addUser', '/projects/php/users/add',  array(
+$map->get('addUser', '/users/add/',  array(
     'controller' => 'App\Controllers\UserController',
     'action' => 'addAction'
 ));
-$map->post('saveUser', '/projects/php/users/add',  array(
+$map->post('saveUser', '/users/add/',  array(
     'controller' => 'App\Controllers\UserController',
     'action' => 'addAction'
 ));

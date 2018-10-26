@@ -17,6 +17,8 @@ En este proyecto se desarrolla un pequeño manejador de tareas TODO-LIST.
 - Uso de **Twig** como motor de plantillas.
 - Forma sencilla de **adjuntar y almacenar archivos**.
 - Uso de **Bootstrap** para dar estilos básicos a la interfaz.
+- Módulo de administración de tareas.
+- Módulo de administración de usuarios.
 
 ## Herramientas y entorno
 - Sistema Windows 10
