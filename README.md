@@ -19,6 +19,8 @@ En este proyecto se desarrolla un pequeño manejador de tareas TODO-LIST.
 - Uso de **Bootstrap** para dar estilos básicos a la interfaz.
 - Módulo de administración de tareas.
 - Módulo de administración de usuarios.
+- Inicio y cierre de sesiones.
+- Uso de **variables de entorno** para ambientes de producción.
 
 ## Herramientas y entorno
 - Sistema Windows 10
@@ -32,7 +34,7 @@ En este proyecto se desarrolla un pequeño manejador de tareas TODO-LIST.
     ```
     composer install
     ```
-2. Editar las credenciales de acceso a la base de datos en el archivo *public/index.php*
+2. Editar las credenciales de acceso a la base de datos en el archivo *.env.sample* y cambiarle la extensión para dejarlo como *.env*
 
 3. Editar el mapa de rutas del archivo *public/index.php* para establecerlo a la raíz de la carpeta del proyecto.
 
