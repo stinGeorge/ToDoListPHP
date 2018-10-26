@@ -17,6 +17,7 @@ class AuthController extends BaseController {
 
         if($user){
             if(password_verify($postData['password'], $user->password)){
+                $_SESSION['userID'] = $user->id;
                 return new RedirectResponse('/projects/php/admin/');
             }
         }
@@ -27,7 +28,8 @@ class AuthController extends BaseController {
         ));
     }
 
-    function indexAdmin(){
-        return $this->renderHTML('admin.twig');
+    function authLogout(){
+        unset($_SESSION['userID']);
+        return new RedirectResponse('/projects/php/login/');
     }
 }

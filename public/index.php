@@ -6,6 +6,8 @@ error_reporting(E_ALL);
 
 require_once '../vendor/autoload.php';
 
+session_start();
+
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Aura\Router\RouterContainer;
 
@@ -40,21 +42,26 @@ $map = $routerContainer->getMap();
 // Index principal - Front Controller
 $map->get('index', '/', array(
     'controller' => 'App\Controllers\IndexController',
-    'action' => 'indexAction'
+    'action' => 'indexAction',
 ));
 
 // Routes for Login
-$map->get('indexLogin', '/login-form/', array(
+$map->get('indexLogin', '/login/', array(
     'controller' => 'App\Controllers\AuthController',
     'action' => 'indexAction'
 ));
-$map->post('auth', '/login-form/', array(
+$map->post('authLogin', '/login/', array(
     'controller' => 'App\Controllers\AuthController',
     'action' => 'authLogin'
 ));
-$map->get('indexAdmin', '/admin/', array(
+$map->get('authLogout', '/logout/', array(
     'controller' => 'App\Controllers\AuthController',
-    'action' => 'indexAdmin'
+    'action' => 'authLogout'
+));
+$map->get('indexAdmin', '/admin/', array(
+    'controller' => 'App\Controllers\AdminController',
+    'action' => 'index',
+    'auth' => true
 ));
 
 // Routes for tasks
@@ -95,6 +102,14 @@ if(!$route){
     $handlerData = $route->handler;
     $controllerName = $handlerData['controller'];
     $controllerAction = $handlerData['action'];
+    $needsAuth = $handlerData['auth'] ?? false;
+
+    $sessionUserID = $_SESSION['userID'] ?? null;
+    if($needsAuth &&! $sessionUserID){
+        echo 'Page is detected';
+        die();
+    }
+
     $controller = new $handlerData['controller'];
     $response = $controller->$controllerAction($request);
 
