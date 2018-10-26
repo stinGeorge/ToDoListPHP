@@ -43,6 +43,12 @@ $map->get('index', '/projects/php/', array(
     'action' => 'indexAction'
 ));
 
+// Routes for Login
+$map->get('indexLogin', '/projects/php/login-form', array(
+    'controller' => 'App\Controllers\AuthController',
+    'action' => 'indexAction'
+));
+
 // Routes for tasks
 $map->get('indexTask', '/projects/php/tasks/', array(
     'controller' => 'App\Controllers\TaskController',
