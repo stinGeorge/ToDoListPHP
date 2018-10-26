@@ -10,6 +10,7 @@ session_start();
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Aura\Router\RouterContainer;
+use Zend\Diactoros\Response\RedirectResponse;
 
 $capsule = new Capsule;
 $capsule->addConnection([
@@ -102,16 +103,17 @@ if(!$route){
     $handlerData = $route->handler;
     $controllerName = $handlerData['controller'];
     $controllerAction = $handlerData['action'];
+
     $needsAuth = $handlerData['auth'] ?? false;
-
     $sessionUserID = $_SESSION['userID'] ?? null;
-    if($needsAuth &&! $sessionUserID){
-        echo 'Page is detected';
-        die();
-    }
 
-    $controller = new $handlerData['controller'];
-    $response = $controller->$controllerAction($request);
+    if($needsAuth && !$sessionUserID){
+        $controller = new \App\Controllers\AuthController();
+        $response = $controller->authLogout();
+    }else{
+        $controller = new $handlerData['controller'];
+        $response = $controller->$controllerAction($request);
+    }
 
     foreach ($response->getHeaders() as $name => $values){
         foreach ($values as $value){
@@ -119,5 +121,6 @@ if(!$route){
         }
     }
     http_response_code($response->getStatusCode());
+
     echo $response->getBody();
 }
