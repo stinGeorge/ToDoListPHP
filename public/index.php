@@ -37,9 +37,15 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
 $routerContainer = new RouterContainer();
 $map = $routerContainer->getMap();
 
-// Routes for tasks
+// Index principal - Front Controller
 $map->get('index', '/projects/php/', array(
     'controller' => 'App\Controllers\IndexController',
+    'action' => 'indexAction'
+));
+
+// Routes for tasks
+$map->get('indexTask', '/projects/php/tasks/', array(
+    'controller' => 'App\Controllers\TaskController',
     'action' => 'indexAction'
 ));
 $map->get('addTask', '/projects/php/tasks/add',  array(

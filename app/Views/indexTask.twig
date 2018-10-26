@@ -1,0 +1,25 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h1>Lista de tareas</h1>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task.name }}
+                {% if task.image_name %}
+                    <p>
+                        <img src="../public/uploads/{{ task.image_name }}" alt="{{ task.image_name }}" width="100">
+                    </p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <ul class="list-group mt-4">
+        <li class="list-group-item">
+            <a class="btn btn-link" href="/projects/php/tasks/add">Agregar una nueva tarea</a>
+        </li>
+        <li class="list-group-item">
+            <a class="btn btn-link" href="/projects/php/">Volver al inicio</a>
+        </li>
+    </ul>
+{% endblock %}

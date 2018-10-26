@@ -7,19 +7,7 @@
             <a href="/projects/php/users/">Lista de usuarios</a>
         </li>
         <li class="list-group-item">
-            <a href="/projects/php/tasks/add">Lista de tareas</a>
+            <a href="/projects/php/tasks/">Lista de tareas</a>
         </li>
-    </ul>
-    <ul>
-        {% for task in tasks %}
-            <li>
-                {{ task.name }}
-                {% if task.image_name %}
-                    <p>
-                        <img src="uploads/{{ task.image_name }}" alt="{{ task.image_name }}" width="100">
-                    </p>
-                {% endif %}
-            </li>
-        {% endfor %}
     </ul>
 {% endblock %}

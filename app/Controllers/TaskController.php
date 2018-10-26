@@ -5,6 +5,12 @@ use App\Models\Task;
 use Respect\Validation\Validator as v;
 
 class TaskController extends BaseController{
+    public function indexAction(){
+        $tasks = Task::all();
+        $data = array('tasks' => $tasks);
+        return $this->renderHTML('indexTask.twig', $data);
+    }
+
     public function addAction($request){
         $responseMessage = '';
         $statusMessage = 0;

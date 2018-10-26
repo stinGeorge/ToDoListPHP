@@ -10,20 +10,30 @@
     {% endif %}
 
     <form method="post" action="/projects/php/tasks/add" enctype="multipart/form-data">
-        <div>
-            <label>
-                <input type="text" name="name">
-            </label>
+        <div class="form-group">
+            <label for="name">Tarea</label>
+            <input class="form-control" id="name" type="text" name="name">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="fileItem">Archivo</span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="file" name="image" aria-describedby="fileItem">
+                <label class="custom-file-label" for="file">Elegir archivo</label>
+            </div>
         </div>
         <div>
-            <label>
-                <input type="file" name="image">
-            </label>
-        </div>
-        <div>
-            <button type="submit">Agregar</button>
+            <button class="btn btn-info" type="submit">Guardar tarea</button>
         </div>
     </form>
 
-    <a href="/projects/php/">Ver lista de tareas</a>
+    <ul class="list-group mt-4">
+        <li class="list-group-item">
+            <a class="btn btn-link" href="/projects/php/tasks/">Volver a la lista de tareas</a>
+        </li>
+        <li class="list-group-item">
+            <a class="btn btn-link" href="/projects/php/">Volver al inicio</a>
+        </li>
+    </ul>
 {% endblock %}
