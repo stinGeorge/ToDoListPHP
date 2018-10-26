@@ -48,9 +48,13 @@ $map->get('indexLogin', '/login-form/', array(
     'controller' => 'App\Controllers\AuthController',
     'action' => 'indexAction'
 ));
-$map->post('auth', '/auth/', array(
+$map->post('auth', '/login-form/', array(
     'controller' => 'App\Controllers\AuthController',
     'action' => 'authLogin'
+));
+$map->get('indexAdmin', '/admin/', array(
+    'controller' => 'App\Controllers\AuthController',
+    'action' => 'indexAdmin'
 ));
 
 // Routes for tasks
@@ -83,13 +87,22 @@ $map->post('saveUser', '/users/add/',  array(
 
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);
+
+//    echo $routerContainer->getGenerator()->generate('indexUser');
 if(!$route){
-    echo 'This is not valid route';
+    echo 'This is not a valid route';
 }else{
     $handlerData = $route->handler;
     $controllerName = $handlerData['controller'];
     $controllerAction = $handlerData['action'];
     $controller = new $handlerData['controller'];
     $response = $controller->$controllerAction($request);
+
+    foreach ($response->getHeaders() as $name => $values){
+        foreach ($values as $value){
+            header(sprintf('%s: %s', $name, $value), false);
+        }
+    }
+    http_response_code($response->getStatusCode());
     echo $response->getBody();
 }

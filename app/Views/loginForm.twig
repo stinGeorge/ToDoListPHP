@@ -2,7 +2,14 @@
 
 {% block content %}
     <h1>Iniciar sesión</h1>
-    <form action="/projects/php/auth/" method="post">
+
+    {% if statusMessage == -1 %}
+        <div class="alert alert-danger" role="alert">{{ responseMessage }}</div>
+    {% elseif statusMessage == 1 %}
+        <div class="alert alert-success" role="alert">{{ responseMessage }}</div>
+    {% endif %}
+
+    <form action="/projects/php/login-form/" method="post">
         <div class="form-group">
             <label for="email">Email de usuario</label>
             <input class="form-control" id="email" type="email" name="email">
